@@ -116,9 +116,9 @@ export const portfolioConfig: PortfolioConfig = {
   },
 
   stats: {
-    yearsExperience: 4,
-    projects: 20,
-    clients: 10,
+    yearsExperience: 5,
+    projects: 5,
+    clients: 2,
   },
 
   social: [
@@ -261,8 +261,8 @@ export const portfolioConfig: PortfolioConfig = {
   commandPalette: true,
 
   theme: {
-    accent: '#3B9EFF',
-    defaultMode: 'dark',
+    accent: '#70a3d7',
+    defaultMode: 'light',
   },
 
   meta: {
