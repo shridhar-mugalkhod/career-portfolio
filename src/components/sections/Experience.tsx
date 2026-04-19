@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioConfig } from '@/config/portfolio.config';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
@@ -65,8 +65,7 @@ function TimelineEntry({ entry, index, isLast }: { entry: typeof portfolioConfig
             </span>
           </div>
 
-          <div className={`overflow-hidden ${expanded ? '' : 'max-md:hidden'} md:block`}>
-
+          <div className="hidden md:block">
             <p className="text-body mb-4" style={{ color: 'var(--text-secondary)' }}>
               {entry.description}
             </p>
@@ -81,6 +80,33 @@ function TimelineEntry({ entry, index, isLast }: { entry: typeof portfolioConfig
               ))}
             </div>
           </div>
+
+          {/* Mobile expandable content with animation */}
+          <AnimatePresence>
+            {expanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="md:hidden overflow-hidden"
+              >
+                <p className="text-body mb-4" style={{ color: 'var(--text-secondary)' }}>
+                  {entry.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {entry.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="chip transition-transform hover:-translate-y-0.5"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Mobile expand indicator */}
           <button

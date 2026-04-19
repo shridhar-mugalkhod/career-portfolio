@@ -7,6 +7,8 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
 function ProjectCard({ project, index, featured }: { project: Project; index: number; featured?: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <AnimatedSection
       variant={featured ? 'scaleUp' : 'fadeUp'}
@@ -14,11 +16,12 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
       className={featured ? 'md:col-span-2' : ''}
     >
       <div
-        className="group rounded-xl overflow-hidden transition-all card-glow"
+        className="group rounded-xl overflow-hidden transition-all card-glow md:cursor-pointer"
         style={{
           backgroundColor: 'var(--card-bg)',
           border: '1px solid var(--card-border)',
         }}
+        onClick={() => setExpanded(!expanded)}
       >
         {/* Image */}
         <div className="relative overflow-hidden aspect-video">
@@ -76,9 +79,29 @@ function ProjectCard({ project, index, featured }: { project: Project; index: nu
           <h3 className="font-display font-bold mb-2" style={{ fontSize: 'var(--text-h3)', color: 'var(--text-primary)' }}>
             {project.title}
           </h3>
-          <p className="text-small mb-4" style={{ color: 'var(--text-secondary)' }}>
+
+          {/* Desktop description always visible */}
+          <p className="text-small mb-4 hidden md:block" style={{ color: 'var(--text-secondary)' }}>
             {project.description}
           </p>
+
+          {/* Mobile expandable description */}
+          <AnimatePresence>
+            {expanded && (
+              <motion.p
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="text-small mb-4 md:hidden overflow-hidden"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {project.description}
+              </motion.p>
+            )}
+          </AnimatePresence>
+
+          {/* Technologies */}
           <div className="flex flex-wrap gap-2 mb-4">
             {project.technologies.map((tech) => (
               <span

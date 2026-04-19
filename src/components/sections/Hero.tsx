@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 import { FiArrowDown } from 'react-icons/fi';
 import { portfolioConfig } from '@/config/portfolio.config';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
@@ -43,6 +43,14 @@ export default function Hero() {
   const { personal } = portfolioConfig;
   const sectionRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -58,13 +66,13 @@ export default function Hero() {
   const containerVariants = {
     hidden: {},
     visible: {
-      transition: { staggerChildren: 0.03, delayChildren: 0.2 },
+      transition: { staggerChildren: reduced ? 0 : 0.03, delayChildren: reduced ? 0 : 0.2 },
     },
   };
 
   const letterVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_EXPO } },
+    visible: { opacity: 1, y: 0, transition: { duration: reduced ? 0.1 : 0.5, ease: EASE_OUT_EXPO } },
   };
 
   return (
@@ -90,7 +98,7 @@ export default function Hero() {
 
       <motion.div
         className="relative z-10 text-center max-w-4xl mx-auto"
-        style={reduced ? {} : { y, opacity }}
+        style={reduced || isMobile ? {} : { y, opacity }}
       >
         {/* Name with gradient text */}
         <motion.h1
@@ -104,41 +112,37 @@ export default function Hero() {
             backgroundClip: 'text',
             animation: reduced ? 'none' : 'gradientMesh 6s ease-in-out infinite',
           }}
-          variants={reduced ? undefined : containerVariants}
+          variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {reduced ? (
-            personal.name
-          ) : (
-            nameWords.map((word, wi) => (
-              <span key={wi} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-                {word.split('').map((letter, li) => (
-                  <motion.span
-                    key={`${wi}-${li}`}
-                    variants={letterVariants}
-                    style={{ display: 'inline-block' }}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-                {wi < nameWords.length - 1 && (
-                  <motion.span variants={letterVariants} style={{ display: 'inline-block' }}>
-                    {'\u00A0'}
-                  </motion.span>
-                )}
-              </span>
-            ))
-          )}
+          {nameWords.map((word, wi) => (
+            <span key={wi} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+              {word.split('').map((letter, li) => (
+                <motion.span
+                  key={`${wi}-${li}`}
+                  variants={letterVariants}
+                  style={{ display: 'inline-block' }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+              {wi < nameWords.length - 1 && (
+                <motion.span variants={letterVariants} style={{ display: 'inline-block' }}>
+                  {'\u00A0'}
+                </motion.span>
+              )}
+            </span>
+          ))}
         </motion.h1>
 
         {/* Tagline */}
         <motion.p
           className="text-h3 font-body mb-6"
           style={{ color: 'var(--text-secondary)' }}
-          initial={reduced ? undefined : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, ease: EASE_OUT_EXPO }}
+          transition={{ delay: reduced ? 0 : 0.6, duration: reduced ? 0.1 : 0.6, ease: EASE_OUT_EXPO }}
         >
           {personal.tagline}
         </motion.p>
@@ -147,9 +151,9 @@ export default function Hero() {
         <motion.p
           className="text-body max-w-2xl mx-auto mb-10"
           style={{ color: 'var(--text-secondary)' }}
-          initial={reduced ? undefined : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
+          transition={{ delay: reduced ? 0 : 0.9, duration: reduced ? 0.1 : 0.8 }}
         >
           {personal.bio}
         </motion.p>
@@ -157,25 +161,29 @@ export default function Hero() {
         {/* CTAs */}
         <motion.div
           className="flex flex-wrap items-center justify-center gap-4"
-          initial={reduced ? undefined : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.6, ease: EASE_OUT_EXPO }}
+          transition={{ delay: reduced ? 0 : 1.1, duration: reduced ? 0.1 : 0.6, ease: EASE_OUT_EXPO }}
         >
-          <MagneticCTA href="#contact" primary>
-            Let's Talk
-          </MagneticCTA>
-          <MagneticCTA href="#projects">
-            View Work
-          </MagneticCTA>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <MagneticCTA href="#contact" primary>
+              Let's Talk
+            </MagneticCTA>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <MagneticCTA href="#projects">
+              View Work
+            </MagneticCTA>
+          </motion.div>
         </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={reduced ? undefined : { opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.6 }}
+        transition={{ delay: reduced ? 0 : 2, duration: reduced ? 0.1 : 0.6 }}
       >
         <motion.button
           onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
@@ -186,7 +194,9 @@ export default function Hero() {
           aria-label="Scroll to About section"
         >
           <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <FiArrowDown size={20} />
+          <motion.div animate={{ y: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}>
+            <FiArrowDown size={20} />
+          </motion.div>
         </motion.button>
       </motion.div>
     </section>

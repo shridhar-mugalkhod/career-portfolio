@@ -8,20 +8,20 @@
 /* ───────────────────── Dark Mode (default) — Arctic Depth ───────────────────── */
 :root {
   /* Core backgrounds */
-  --bg-primary: #0A0F1A;
-  --bg-secondary: #111827;
-  --bg-tertiary: #1E293B;
+  --bg-primary: #060608;
+  --bg-secondary: #1c2127;
+  --bg-tertiary: #44444E;
 
   /* Card system */
-  --card-bg: #0F172A;
-  --card-hover: #1E293B;
-  --card-border: #1E293B;
+  --card-bg: #000000;
+  --card-hover: #01060e;
+  --card-border: #2d2b30;
 
   /* Accent (arctic blue) */
-  --accent: #3B9EFF;
-  --accent-soft: #3B9EFF1A;
-  --accent-hover: #60B3FF;
-  --accent-glow: #3B9EFF33;
+  --accent: #6468c4;
+  --accent-soft: #3779c58e;
+  --accent-hover: #6f91bb;
+  --accent-glow: #3066a3b3;
 
   /* Text hierarchy */
   --text-primary: #F1F5F9;
@@ -29,9 +29,9 @@
   --text-tertiary: #64748B;
 
   /* Semantic */
-  --success: #34D399;
-  --error: #F87171;
-  --info: #60A5FA;
+ --success: #059669;
+  --error: #DC2626;
+  --info: #2563EB;
 
   /* Borders & glass */
   --border-subtle: #1E293B;
@@ -79,9 +79,9 @@
 
 /* ───────────────────── Light Mode ───────────────────── */
 [data-theme="light"] {
-  --bg-primary: #F8FAFC;
-  --bg-secondary: #F1F5F9;
-  --bg-tertiary: #E2E8F0;
+  --bg-primary: #dde4eb;
+  --bg-secondary: #e2e7ed;
+  --bg-tertiary: #d9dfe8;
 
   --card-bg: #FFFFFF;
   --card-hover: #F8FAFC;

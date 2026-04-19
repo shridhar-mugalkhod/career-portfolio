@@ -9,7 +9,15 @@ export function CustomCursor() {
   const isVisible = useRef(false);
 
   useEffect(() => {
-    if (!window.matchMedia('(pointer: fine)').matches) return;
+    // Only run on desktop with fine pointer (not touch devices)
+    const isTouchDevice = () => {
+      return (
+        !window.matchMedia('(pointer: fine)').matches ||
+        navigator.maxTouchPoints > 0
+      );
+    };
+
+    if (isTouchDevice()) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };

@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiBookOpen, FiCalendar, FiMapPin } from 'react-icons/fi';
 import { portfolioConfig } from '@/config/portfolio.config';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
@@ -7,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { EASE_OUT_EXPO } from '@/constants/animation';
 
 function EducationCard({ edu, index }: { edu: typeof portfolioConfig.education[0]; index: number }) {
+  const [expanded, setExpanded] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   // Extract location from institution (after comma)
@@ -42,11 +44,12 @@ function EducationCard({ edu, index }: { edu: typeof portfolioConfig.education[0
 
       {/* Card content */}
       <div
-        className="relative p-8 rounded-2xl h-full overflow-hidden"
+        className="relative p-8 rounded-2xl h-full overflow-hidden cursor-pointer md:cursor-default transition-all"
         style={{
           backgroundColor: 'var(--card-bg)',
           border: '1px solid var(--card-border)',
         }}
+        onClick={() => setExpanded(!expanded)}
       >
         {/* Decorative background pattern */}
         <div
@@ -116,12 +119,33 @@ function EducationCard({ edu, index }: { edu: typeof portfolioConfig.education[0
           )}
         </div>
 
-        {/* Description */}
-        {edu.description && (
-          <p className="text-small leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
-            {edu.description.replace(gradeMatch?.[0] ?? '', '').replace(/\.\s*$/, '').trim()}
-          </p>
-        )}
+        {/* Description - Desktop always visible, Mobile on expand */}
+        <div className="hidden md:block">
+          {edu.description && (
+            <p className="text-small leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+              {edu.description.replace(gradeMatch?.[0] ?? '', '').replace(/\.\s*$/, '').trim()}
+            </p>
+          )}
+        </div>
+
+        {/* Mobile expandable description */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="md:hidden overflow-hidden"
+            >
+              {edu.description && (
+                <p className="text-small leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>
+                  {edu.description.replace(gradeMatch?.[0] ?? '', '').replace(/\.\s*$/, '').trim()}
+                </p>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Bottom accent line */}
         <motion.div
