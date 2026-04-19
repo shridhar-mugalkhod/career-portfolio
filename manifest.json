@@ -1,0 +1,16 @@
+{
+  "name": "Shridhar Mugalkhod — Portfolio",
+  "short_name": "SM Portfolio",
+  "description": "Portfolio of Shridhar Mugalkhod, a full-stack developer.",
+  "start_url": "/portfolio-v2/",
+  "display": "standalone",
+  "background_color": "#0A0A0F",
+  "theme_color": "#F5A623",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
