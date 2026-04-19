@@ -268,6 +268,6 @@ export const portfolioConfig: PortfolioConfig = {
   meta: {
     title: 'Shridhar Mugalkhod — Software Engineer',
     description: 'Portfolio of Shridhar Mugalkhod, a software engineer with 4 years of experience specializing in React, TypeScript, and modern web technologies.',
-    url: 'https://shridharmugalkhod.github.io/portfolio-v2',
+    url: 'https://shridharmugalkhod.github.io/career-portfolio',
   },
 };

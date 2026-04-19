@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shridharmugalkhod.github.io/portfolio-v2/sitemap.xml
+Sitemap: https://shridharmugalkhod.github.io/career-portfolio/sitemap.xml
