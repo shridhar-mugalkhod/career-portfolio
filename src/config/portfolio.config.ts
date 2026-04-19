@@ -110,7 +110,7 @@ export const portfolioConfig: PortfolioConfig = {
     initials: 'SM',
     tagline: 'Software Engineer & Full Stack Developer',
     bio: 'Software Development Engineer with 4 years of experience in building high-performance full-stack web applications and delivering scalable solutions through cross-functional collaboration.',
-    avatarUrl: asset('/public/Screenshot 2026-01-14 at 11.54.11 AM.png'),
+    avatarUrl: asset('/Screenshot 2026-01-14 at 11.54.11 AM.png'),
     resumeUrl: 'https://drive.google.com/file/d/1ubTKCQXHEa2Aq8klP7rE6CNheLrlCY2P/view',
     openToWork: true,
   },
