@@ -5,57 +5,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ───────────────────── Dark Mode (default) — Premium Minimal ───────────────────── */
+/* ───────────────────── Dark Mode (default) — Arctic Depth ───────────────────── */
 :root {
-  /* Core backgrounds - deeper blacks for premium feel */
-  --bg-primary: #0A0A0A;
-  --bg-secondary: #1A1A1A;
-  --bg-tertiary: #2D2D2D;
+  /* Core backgrounds */
+  --bg-primary: #0A0F1A;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1E293B;
 
   /* Card system */
-  --card-bg: #171717;
-  --card-hover: #2D2D2D;
-  --card-border: #2D2D2D;
+  --card-bg: #0F172A;
+  --card-hover: #1E293B;
+  --card-border: #1E293B;
 
-  /* Primary Accent (70% usage - refined cyan) */
-  --accent: #00D4FF;
-  --accent-soft: #00D4FF0D;
-  --accent-hover: #00E5FF;
-  --accent-glow: #00D4FF1A;
-
-  /* Secondary Accent (20% usage - warm gold) */
-  --accent-secondary: #FFB800;
-  --accent-secondary-soft: #FFB8000D;
-  --accent-secondary-hover: #FFC933;
-
-  /* Warm Accent (5% usage - orange for CTAs) */
-  --accent-warm: #FF6B35;
-  --accent-warm-soft: #FF6B350D;
-  --accent-warm-hover: #FF7C52;
-
-  /* Supporting Accent (5% usage - teal for cards) */
-  --accent-teal: #06B6D4;
-  --accent-teal-soft: #06B6D40D;
-  --accent-teal-hover: #06D6D4;
+  /* Accent (arctic blue) */
+  --accent: #3B9EFF;
+  --accent-soft: #3B9EFF1A;
+  --accent-hover: #60B3FF;
+  --accent-glow: #3B9EFF33;
 
   /* Text hierarchy */
-  --text-primary: #FFFFFF;
-  --text-secondary: #A1A1A1;
-  --text-tertiary: #7C7C7C;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-tertiary: #64748B;
 
   /* Semantic */
-  --success: #10B981;
-  --error: #EF4444;
-  --info: #3B82F6;
+  --success: #34D399;
+  --error: #F87171;
+  --info: #60A5FA;
 
   /* Borders & glass */
-  --border-subtle: #2D2D2D;
-  --border-hover: #3D3D3D;
-  --glass-bg: rgba(26, 26, 26, 0.6);
-  --glass-border: rgba(0, 212, 255, 0.08);
+  --border-subtle: #1E293B;
+  --border-hover: #334155;
+  --glass-bg: rgba(17, 24, 39, 0.6);
+  --glass-border: rgba(59, 158, 255, 0.08);
   --overlay-bg: rgba(0, 0, 0, 0.5);
-  --success-soft: rgba(16, 185, 129, 0.1);
-  --success-border: rgba(16, 185, 129, 0.2);
+  --success-soft: rgba(52, 211, 153, 0.1);
+  --success-border: rgba(52, 211, 153, 0.2);
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -94,53 +79,34 @@
 
 /* ───────────────────── Light Mode ───────────────────── */
 [data-theme="light"] {
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F5;
-  --bg-tertiary: #EFEFEF;
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #F1F5F9;
+  --bg-tertiary: #E2E8F0;
 
-  --card-bg: #FAFAFA;
-  --card-hover: #F5F5F5;
-  --card-border: #EFEFEF;
+  --card-bg: #FFFFFF;
+  --card-hover: #F8FAFC;
+  --card-border: #E2E8F0;
 
-  /* Primary Accent (light mode - refined tech blue) */
-  --accent: #0077CC;
-  --accent-soft: #0077CC0D;
-  --accent-hover: #0056A3;
-  --accent-glow: #0077CC1A;
+  --accent: #0969DA;
+  --accent-soft: #0969DA0D;
+  --accent-hover: #0550AE;
+  --accent-glow: #0969DA1A;
 
-  /* Secondary Accent (light mode - warm amber) */
-  --accent-secondary: #D97706;
-  --accent-secondary-soft: #D976060D;
-  --accent-secondary-hover: #B45309;
-
-  /* Warm Accent (light mode - warm orange) */
-  --accent-warm: #DC2626;
-  --accent-warm-soft: #DC26260D;
-  --accent-warm-hover: #B91C1C;
-
-  /* Supporting Accent (light mode - teal) */
-  --accent-teal: #0891B2;
-  --accent-teal-soft: #0891B20D;
-  --accent-teal-hover: #0E7490;
-
-  --text-primary: #1D1D1D;
-  --text-secondary: #6B7280;
-  --text-tertiary: #9CA3AF;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #64748B;
 
   --success: #059669;
   --error: #DC2626;
   --info: #2563EB;
 
-  --border-subtle: #EFEFEF;
-  --border-hover: #E5E5E5;
+  --border-subtle: #E2E8F0;
+  --border-hover: #CBD5E1;
   --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 119, 204, 0.06);
+  --glass-border: rgba(0, 0, 0, 0.06);
   --overlay-bg: rgba(0, 0, 0, 0.3);
   --success-soft: rgba(5, 150, 105, 0.1);
   --success-border: rgba(5, 150, 105, 0.2);
-
-  color-scheme: light;
-}
 
   color-scheme: light;
 }
@@ -273,78 +239,6 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent);
-}
-
-/* ───────────────────── Color Accent Utilities ───────────────────── */
-/* Primary Blue - Use for main links, primary buttons, active states */
-.accent-primary {
-  color: var(--accent);
-}
-
-.accent-primary-bg {
-  background-color: var(--accent-soft);
-}
-
-.accent-primary-border {
-  border-color: var(--accent);
-}
-
-/* Secondary Purple - Use for testimonials, featured cards, highlights */
-.accent-secondary {
-  color: var(--accent-secondary);
-}
-
-.accent-secondary-bg {
-  background-color: var(--accent-secondary-soft);
-}
-
-.accent-secondary-border {
-  border-color: var(--accent-secondary);
-}
-
-.accent-secondary-glow {
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
-}
-
-/* Warm Orange - Use for CTAs only (Download, Get in Touch) */
-.accent-warm {
-  color: var(--accent-warm);
-}
-
-.accent-warm-bg {
-  background-color: var(--accent-warm-soft);
-}
-
-.accent-warm-border {
-  border-color: var(--accent-warm);
-}
-
-/* Teal - Use for alternating cards, section accents */
-.accent-teal {
-  color: var(--accent-teal);
-}
-
-.accent-teal-bg {
-  background-color: var(--accent-teal-soft);
-}
-
-.accent-teal-border {
-  border-color: var(--accent-teal);
-}
-
-/* Gradient utilities */
-.text-gradient-purple {
-  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-secondary-hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-warm {
-  background: linear-gradient(135deg, var(--accent-warm), var(--accent-warm-hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 @keyframes marquee {
